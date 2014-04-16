@@ -1,0 +1,65 @@
+<!-- DataTables Initialization -->
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('#dt1').dataTable();
+  } );
+</script>
+<%= stylesheet_link_tag "table" %>
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    min-height:1009px;
+  }
+</style>
+<div class="container">
+  <!-- CONTENT -->
+  <div class="row">
+    <div class="col-sm-12 col-lg-12">
+      <!--SECOND Table -->
+      <h4><strong>Homeowners</strong></h4>
+      <div id="dt1_length" class="dataTables_length">
+        <label>Show
+          <select size="1" name="dt1_length" aria-controls="dt1">
+            <option value="10" selected="selected">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select> entries
+        </label>
+      </div>
+      <div class="dataTables_filter" id="dt1_filter">
+        <label>Search: <input type="text" aria-controls="dt1"></label>
+      </div>
+      <table class="display" id="dt1">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Date Added</th>
+            <th>Last Sign in</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% i = 0 %>
+          <% @owners.each do |single| %>
+          <% i += 1 %>
+          <!-- stuff -->
+          <tr class="<% if i % 2 == 0 %>even<% else %>odd<% end %>">
+            <td><%= single.first_name %></td>
+            <td><%= single.last_name %></td>
+            <td><%= single.email %></td>
+            <td class="center"><%= single.created_at %></td>
+            <td class="center"><%= single.last_sign_in_at %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table><!--/END SECOND TABLE -->
+      <div class="dataTables_info" id="dt1_info">Showing 1 to 25 of 57 entries</div>
+      <div class="dataTables_paginate paging_two_button" id="dt1_paginate">
+        <a class="paginate_disabled_previous" tabindex="0" role="button" id="dt1_previous" aria-controls="dt1">Previous</a>
+        <a class="paginate_enabled_next" tabindex="0" role="button" id="dt1_next" aria-controls="dt1">Next</a>
+      </div>
+    </div><!--/span12 -->
+  </div><!-- /row -->
+</div> <!-- /container -->

@@ -1,0 +1,261 @@
+  <style type="text/css">
+    body {
+    padding-top: 30px;
+}
+
+.faq-cat-content {
+    margin-top: 25px;
+}
+
+.faq-cat-tabs li a {
+    padding: 15px 10px 15px 10px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    color: #777777;
+}
+
+.nav-tabs li a:focus,
+.panel-heading a:focus {
+    outline: none;
+}
+
+.panel-heading a,
+.panel-heading a:hover,
+.panel-heading a:focus {
+    text-decoration: none;
+    color: #777777;
+}
+
+.faq-cat-content .panel-heading:hover {
+    background-color: #efefef;
+}
+
+.active-faq {
+    border-left: 5px solid #888888;
+}
+
+.panel-faq .panel-heading .panel-title span {
+    font-size: 13px;
+    font-weight: normal;
+}
+  </style>
+  <script type="text/javascript">
+    $(document).ready(function() {
+    $('.collapse').on('show.bs.collapse', function() {
+        var id = $(this).attr('id');
+        $('a[href="#' + id + '"]').closest('.panel-heading').addClass('active-faq');
+        $('a[href="#' + id + '"] .panel-title span').html('<i class="glyphicon glyphicon-minus"></i>');
+    });
+    $('.collapse').on('hide.bs.collapse', function() {
+        var id = $(this).attr('id');
+        $('a[href="#' + id + '"]').closest('.panel-heading').removeClass('active-faq');
+        $('a[href="#' + id + '"] .panel-title span').html('<i class="glyphicon glyphicon-plus"></i>');
+    });
+});
+
+  </script>
+  <div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <!-- Nav tabs category -->
+            <ul class="nav nav-tabs faq-cat-tabs">
+                <li class="active"><a href="#faq-cat-1" data-toggle="tab">Settings</a></li>
+                <li><a href="#faq-cat-2" data-toggle="tab">Payments</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content faq-cat-content">
+                <div class="tab-pane active in fade" id="faq-cat-1">
+                    <div class="panel-group" id="accordion-cat-1">
+                        <div class="panel panel-default panel-faq">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-1">
+                                    <h4 class="panel-title">
+                                        User Settings
+                                        <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                    </h4>
+                                </a>
+                            </div>
+                            <div id="faq-cat-1-sub-1" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <div>ID: <%= current_user.id %></div>
+                                    <div>First Name: <%= current_user.first_name %></div>
+                                    <div>Last Name: <%= current_user.last_name %></div>
+                                    <div>Email: <%= current_user.email %></div>
+                                    <div>Created: <%= l current_user.created_at, :format => :long %></div>
+                                    <div>Last Sign in: <%= l current_user.last_sign_in_at, :format => :long %></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default panel-faq">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-2">
+                                    <h4 class="panel-title">
+                                        Payment Settings
+                                        <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                    </h4>
+                                </a>
+                            </div>
+                            <div id="faq-cat-1-sub-2" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <div class="container">
+                                        <div class="row-fluid">
+                                          <form class="form-horizontal">
+                                            <fieldset>
+                                              <div id="legend">
+                                                <legend class="">Payment</legend>
+                                              </div>
+
+                                              <!-- Name -->
+                                              <div class="control-group">
+                                                <label class="control-label"  for="username">Card Holder's Name</label>
+                                                <div class="controls">
+                                                  <input type="text" id="username" name="username" placeholder="" class="input-xlarge">
+                                                </div>
+                                              </div>
+
+                                              <!-- Card Number -->
+                                              <div class="control-group">
+                                                <label class="control-label" for="email">Card Number</label>
+                                                <div class="controls">
+                                                  <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
+                                                </div>
+                                              </div>
+
+                                              <!-- Expiry-->
+                                              <div class="control-group">
+                                                <label class="control-label" for="password">Card Expiry Date</label>
+                                                <div class="controls">
+                                                  <select class="span3" name="expiry_month" id="expiry_month">
+                                                    <option></option>
+                                                    <option value="01">Jan (01)</option>
+                                                    <option value="02">Feb (02)</option>
+                                                    <option value="03">Mar (03)</option>
+                                                    <option value="04">Apr (04)</option>
+                                                    <option value="05">May (05)</option>
+                                                    <option value="06">June (06)</option>
+                                                    <option value="07">July (07)</option>
+                                                    <option value="08">Aug (08)</option>
+                                                    <option value="09">Sep (09)</option>
+                                                    <option value="10">Oct (10)</option>1
+                                                    <option value="11">Nov (11)</option>
+                                                    <option value="12">Dec (12)</option>
+                                                  </select>
+                                                  <select class="span2" name="expiry_year">
+                                                    <option value="13">2013</option>
+                                                    <option value="14">2014</option>
+                                                    <option value="15">2015</option>
+                                                    <option value="16">2016</option>
+                                                    <option value="17">2017</option>
+                                                    <option value="18">2018</option>
+                                                    <option value="19">2019</option>
+                                                    <option value="20">2020</option>
+                                                    <option value="21">2021</option>
+                                                    <option value="22">2022</option>
+                                                    <option value="23">2023</option>
+                                                  </select>
+                                                </div>
+                                              </div>
+
+                                              <!-- CVV -->
+                                              <div class="control-group">
+                                                <label class="control-label"  for="password_confirm">Card CVV</label>
+                                                <div class="controls">
+                                                  <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="span2">
+                                                </div>
+                                              </div>
+
+                                              <!-- Save card -->
+                                              <div class="control-group">
+                                                <div class="controls">
+                                                  <label class="checkbox" for="save_card">
+                                                    <input type="checkbox" id="save_card" value="option1">
+                                                    Save card on file?
+                                                  </label>
+                                                </div>
+                                              </div>
+                                              <br />
+
+                                              <!-- Submit -->
+                                              <div class="control-group">
+                                                <div class="controls">
+                                                  <button class="btn btn-success">Pay Now</button>
+                                                </div>
+                                              </div>
+
+                                            </fieldset>
+                                          </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="faq-cat-2">
+                    <div class="panel-group" id="accordion-cat-2">
+                        <div class="panel panel-default panel-faq">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" data-parent="#accordion-cat-2" href="#faq-cat-2-sub-1">
+                                    <h4 class="panel-title">
+                                        Past Payments
+                                        <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                    </h4>
+                                </a>
+                            </div>
+                            <div id="faq-cat-2-sub-1" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <table class="table zebra-striped">
+                                        <thead>
+                                          <tr>
+                                            <th>#</th>
+                                            <th>Amount</th>
+                                            <th>Payment Date</th>
+                                            <!-- <th>Language</th> -->
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <td>1</td>
+                                            <td>$50</td>
+                                            <td>1/02/2014</td>
+                                            <!-- <td>English</td> -->
+                                          </tr>
+                                          <tr>
+                                            <td>2</td>
+                                            <td>$300</td>
+                                            <td>4/12/2013</td>
+                                            <!-- <td>English</td> -->
+                                          </tr>
+                                          <tr>
+                                            <td>3</td>
+                                            <td>$150</td>
+                                            <td>4/15/2012</td>
+                                            <!-- <td>Code</td> -->
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="panel panel-default panel-faq">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" data-parent="#accordion-cat-2" href="#faq-cat-2-sub-2">
+                                    <h4 class="panel-title">
+                                        FAQ Item Category #2
+                                        <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                    </h4>
+                                </a>
+                            </div>
+                            <div id="faq-cat-2-sub-2" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>

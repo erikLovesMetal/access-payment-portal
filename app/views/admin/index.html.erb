@@ -1,0 +1,140 @@
+ <style type="text/css">
+      body {
+        padding-top: 60px;
+        font-size: 14px;
+        line-height: 1.428571429;
+        color: #333333;
+        min-height:1009px;
+        background: #1f1f1f;
+      }
+    </style>
+    <script type="text/javascript">
+      $(document).ready(function () {
+          $("#btn-blog-next").click(function () {
+            $('#blogCarousel').carousel('next')
+          });
+           $("#btn-blog-prev").click(function () {
+            $('#blogCarousel').carousel('prev')
+          });
+
+           $("#btn-client-next").click(function () {
+            $('#clientCarousel').carousel('next')
+          });
+           $("#btn-client-prev").click(function () {
+            $('#clientCarousel').carousel('prev')
+          });
+          // trigger the loader image on button click
+          $('#delete-owners-button').click(function(e){
+
+            console.log('sdffsd')
+            return false;
+            e.preventDefault();
+            if(confirm('Are you Sure?')){
+              console.log('yes');
+              return true
+            }else{
+              console.log('no');
+              return false;
+            }
+            // $('#generate-add-form').children('.ajax-loader').show();
+            // $('#id_of_the_stuff_you_want_to_hide').hide();
+          });
+
+          function myBalls(e){
+            e.preventDefault();
+            alert('sdfsdf')
+          }
+      });
+       $(window).load(function(){
+          $('.flexslider').flexslider({
+              animation: "slide",
+              slideshow: true,
+              start: function(slider){
+                $('body').removeClass('loading');
+              }
+          });
+      });
+    </script>
+  <div class="container">
+      <!-- FIRST ROW OF BLOCKS -->
+      <div class="row">
+      <!-- USER PROFILE BLOCK -->
+      <div class="col-sm-3 col-lg-3">
+        <div class="dash-unit">
+          <dtitle>User Profile</dtitle>
+          <hr>
+          <div class="thumbnail">
+            <%= image_tag "face80x80.jpg",{:class => 'img-circle'} %>
+          </div><!-- /thumbnail -->
+          <h1>Admin User</h1>
+          <div id="import_status"></div>
+          <br>
+          <div class="info-user">
+            <span aria-hidden="true" class="li_user fs1"></span>
+            <span aria-hidden="true" class="li_settings fs1"></span>
+            <span aria-hidden="true" class="li_mail fs1"></span>
+            <span aria-hidden="true" class="li_key fs1"></span>
+          </div>
+        </div>
+      </div>
+      <!-- DONUT CHART BLOCK -->
+      <div class="col-sm-3 col-lg-3">
+        <div class="dash-unit">
+          <dtitle>Site Bandwidth</dtitle>
+          <hr>
+            <div id="load"></div>
+            <h2>45%</h2>
+        </div>
+      </div>
+      <!-- LAST MONTH REVENUE -->
+      <div class="col-sm-3 col-lg-3">
+        <div class="dash-unit">
+          <dtitle>Stats</dtitle>
+          <hr>
+          <div class="cont">
+            <p><bold><%= @user_count %></bold> | <ok>Homeowners</ok></p>
+            <br>
+            <p><bold><%= @lastParse %> 02.15.2014</bold> | <ok>Last Import</ok></p>
+            <br>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-sm-3 col-lg-3">
+        <div class="dash-unit">
+          <dtitle>Disk Space</dtitle>
+          <hr>
+          <div id="space"></div>
+          <h2>65%</h2>
+        </div>
+      </div> -->
+      <div class="col-sm-3 col-lg-3">
+        <!-- LOCAL TIME BLOCK -->
+        <div class="half-unit">
+          <dtitle>Local Time</dtitle>
+          <hr>
+          <div class="clockcenter">
+            <% timeObj = Time.new %>
+            <digiclock><%= timeObj.strftime("%I.%M %p") %></digiclock>
+            <!-- <span id="digiclock"><%= timeObj.strftime("%I.%M %p") %></span> -->
+          </div>
+        </div>
+        <!-- SERVER UPTIME -->
+        <div class="half-unit">
+          <dtitle>File Parse</dtitle>
+          <hr>
+          <div class="cont" style="margin-top:-8px;">
+            <p>
+              <%= button_to_function "Import Owners", "trigger_parse()", class: "submit btn-success btn btn-large" %>
+              <!-- 
+              <%= button_to "Import Owners", {:action => 'do_parse', :controller => 'parse'}, :remote => true,:method => :get, :class => "submit btn-success btn btn-large" %>-->
+              <!-- <a href="/access/parse" class="submit btn-success btn btn-large" role="button">Import Owners</a> -->
+            </p>
+            <p>
+              <a href="/access/remove_users" class="submit btn-success btn btn-large" role="button" id="delete-owners-button" onclick="myBalls();">Delete Owners</a>
+            </p>
+            <!-- <span class="text-muted">Parse Paylease CSV File</span> -->
+          </div>
+        </div>
+      </div>
+    </div><!-- /row -->
+  </div><!-- /container
